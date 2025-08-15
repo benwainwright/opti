@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+  "resolveJsonModule": true,
+    "noEmit": true,
+    "module": "nodenext",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "es2022",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "paths": {
+      "@commands": ["./src/commands/index.ts"],
+      "@core": ["./src/core/index.ts"],
+      "@types": ["./src/types/index.ts"],
+      "@renderers": ["./src/renderers/index.ts"],
+      "@optimizely-client": ["./src/optimizely-client/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/optimizely-client", "tests/**/*.ts", "vitest.setup.ts"],
+  "exclude": [
+    "dist/**",
+    "vite.config.ts",
+    "vite.config.mts",
+    "vitest.config.ts",
+    "vitest.config.mts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/**/*-d.ts"
+  ]
+}
