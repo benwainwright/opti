@@ -50,14 +50,15 @@ async function runCliSubprocess(
       success: true,
     };
   } catch (error: unknown) {
+    const execaError = error as { stdout?: string; stderr?: string; exitCode?: number; message?: string };
     return {
-      stdout: (error.stdout || "")
+      stdout: (execaError.stdout || "")
         .split("\n")
         .filter((line: string) => line.trim()),
-      stderr: (error.stderr || error.message || "")
+      stderr: (execaError.stderr || execaError.message || "")
         .split("\n")
         .filter((line: string) => line.trim()),
-      exitCode: error.exitCode || 1,
+      exitCode: execaError.exitCode || 1,
       success: false,
     };
   }

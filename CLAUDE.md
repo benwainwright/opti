@@ -33,7 +33,9 @@ src/
 ### Scripts
 
 - `pnpm start` - Run the CLI
-- `pnpm test` - Run tests
+- `pnpm test:unit` - Run unit tests (*.spec.ts)
+- `pnpm test:integration` - Run integration tests (tests/integration/*.test.ts - these stub out the API)
+- `pnpm test:e2e` - Run end to end tests (within tests/e2e/*.test.ts - these test against real data)
 - `pnpm test:watch` - Run tests in watch mode
 
 ### CLI Commands

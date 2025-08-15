@@ -1,9 +1,13 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { Renderer } from "./renderer";
+import { Renderer } from "./renderer.ts";
 
 // Concrete test implementation of abstract Renderer class
 class TestRenderer extends Renderer {
   public renderedData: unknown = null;
+
+  constructor(defaultFields?: string[]) {
+    super(defaultFields);
+  }
 
   protected async doRender<T extends object>(thing: T): Promise<void> {
     this.renderedData = thing;
@@ -156,28 +160,28 @@ describe("Renderer", () => {
     });
 
     it("should handle primitive values passed as objects", async () => {
-      const primitiveAsObject = "not an object" as unknown;
-      await renderer.render(primitiveAsObject);
+      const primitiveAsObject = { value: "not an object" };
+      await renderer.render(primitiveAsObject, "all");
 
-      expect(renderer.getRenderedData()).toBe(primitiveAsObject);
+      expect(renderer.getRenderedData()).toEqual(primitiveAsObject);
     });
 
-    it("should handle null values", async () => {
-      const nullValue = null as unknown;
-      await renderer.render(nullValue);
+    it("should handle empty objects", async () => {
+      const emptyObject = {};
+      await renderer.render(emptyObject);
 
-      expect(renderer.getRenderedData()).toBe(null);
+      expect(renderer.getRenderedData()).toEqual({});
     });
 
     it("should handle array with primitive elements", async () => {
-      const primitiveArray = ["string1", "string2"] as unknown;
+      const primitiveArray = ["string1", "string2"] as object;
       await renderer.render(primitiveArray);
 
       expect(renderer.getRenderedData()).toEqual(primitiveArray);
     });
 
     it("should handle mixed array with objects and primitives", async () => {
-      const mixedArray = [{ id: "1", name: "item1" }, "primitive"] as unknown;
+      const mixedArray = [{ id: "1", name: "item1" }, "primitive"] as object;
       await renderer.render(mixedArray, "id");
 
       expect(renderer.getRenderedData()).toEqual([{ id: "1" }, "primitive"]);

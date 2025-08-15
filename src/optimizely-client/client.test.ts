@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { OptimizelyClient } from "./client";
+import { OptimizelyClient } from "./client.ts";
 
 // Mock global fetch
 const globalAny = global as typeof global & { fetch?: unknown };
@@ -7,7 +7,8 @@ const globalAny = global as typeof global & { fetch?: unknown };
 describe("OptimizelyClient flags API", () => {
   it("builds correct URL for listing flags", async () => {
     const collected: string[] = [];
-    globalAny.fetch = vi.fn(async (url: string) => {
+    globalAny.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
       collected.push(url);
       return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
@@ -26,7 +27,8 @@ describe("OptimizelyClient flags API", () => {
 
   it("builds correct URL for get flag", async () => {
     const collected: string[] = [];
-    globalAny.fetch = vi.fn(async (url: string) => {
+    globalAny.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
       collected.push(url);
       return {
         ok: true,
@@ -48,7 +50,8 @@ describe("OptimizelyClient flags API", () => {
 
   it("builds correct URL for get ruleset", async () => {
     const collected: string[] = [];
-    globalAny.fetch = vi.fn(async (url: string) => {
+    globalAny.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
       collected.push(url);
       return {
         ok: true,
@@ -63,56 +66,56 @@ describe("OptimizelyClient flags API", () => {
 
     const client = new OptimizelyClient("TOKEN");
     await client.request({
-      path: "projects/:project_id:/flags/:flag_key:/rulesets/:environment_key:",
+      path: "projects/:project_id:/flags/:flag_key:/environments/:environment_key:/ruleset",
       method: "GET",
       params: { project_id: 123, flag_key: "my_flag", environment_key: "prod" },
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod",
+      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/environments/prod/ruleset",
     );
   });
 
-  it("builds correct URL for list rules", async () => {
+  it("builds correct URL for flag entities", async () => {
     const collected: string[] = [];
-    globalAny.fetch = vi.fn(async (url: string) => {
+    globalAny.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
       collected.push(url);
       return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
     await client.request({
-      path: "projects/:project_id:/flags/:flag_key:/rulesets/:environment_key:/rules",
+      path: "projects/:project_id:/flags/:flag_id:/entities",
       method: "GET",
       params: {
         project_id: 123,
-        flag_key: "my_flag",
-        environment_key: "prod",
-        per_page: 10,
+        flag_id: 456,
       },
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod/rules?per_page=10",
+      "https://api.optimizely.com/flags/v1/projects/123/flags/456/entities",
     );
   });
 
-  it("builds correct URL for change history", async () => {
+  it("builds correct URL for reports", async () => {
     const collected: string[] = [];
-    globalAny.fetch = vi.fn(async (url: string) => {
+    globalAny.fetch = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
       collected.push(url);
       return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
     await client.request({
-      path: "projects/:project_id:/flags/:flag_key:/changes",
+      path: "projects/:project_id:/environments/:environment_key:/reports",
       method: "GET",
-      params: { project_id: 123, flag_key: "my_flag" },
+      params: { project_id: 123, environment_key: "prod" },
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/changes",
+      "https://api.optimizely.com/flags/v1/projects/123/environments/prod/reports",
     );
   });
 });

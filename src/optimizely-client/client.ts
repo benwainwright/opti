@@ -141,12 +141,13 @@ export class OptimizelyClient {
     params: Paths[P]["params"];
     pages?: number;
   }): Promise<Paths[P]["returnValue"]> {
-    return (await this.requestUntyped({
+    const result = await this.requestUntyped({
       path,
       method,
       version,
       params,
       pages,
-    })) as unknown as Paths[P]["returnValue"];
+    });
+    return result as Paths[P]["returnValue"];
   }
 }

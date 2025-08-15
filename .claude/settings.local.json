@@ -17,7 +17,12 @@
       "Bash(sed:*)",
       "Bash(npx nx run:*)",
       "Bash(pnpm exec tsc:*)",
-      "Bash(pnpm run:*)"
+      "Bash(pnpm run:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run types:*)",
+      "Bash(npm run test:unit:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

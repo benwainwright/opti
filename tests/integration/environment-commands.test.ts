@@ -127,8 +127,9 @@ describe("Environment Commands Integration Tests", () => {
       // MSW auto-generates mock data and doesn't implement actual filtering
       // Just verify that archived property exists and is a boolean
       environments.forEach((env: unknown) => {
-        if (env.archived !== undefined) {
-          expect(typeof env.archived).toBe("boolean");
+        const environment = env as { archived?: boolean };
+        if (environment.archived !== undefined) {
+          expect(typeof environment.archived).toBe("boolean");
         }
       });
     });
@@ -423,22 +424,30 @@ describe("Environment Commands Integration Tests", () => {
 
       // Validate each environment matches the expected schema
       environments.forEach((environment: unknown) => {
-        expect(environment).toHaveProperty("id");
-        expect(environment).toHaveProperty("key");
-        expect(environment).toHaveProperty("name");
-        expect(environment).toHaveProperty("archived");
-        expect(environment).toHaveProperty("priority");
-        expect(environment).toHaveProperty("account_id");
+        const env = environment as {
+          id: number;
+          key: string;
+          name: string;
+          archived: boolean;
+          priority: number;
+          account_id: number;
+        };
+        expect(env).toHaveProperty("id");
+        expect(env).toHaveProperty("key");
+        expect(env).toHaveProperty("name");
+        expect(env).toHaveProperty("archived");
+        expect(env).toHaveProperty("priority");
+        expect(env).toHaveProperty("account_id");
 
-        expect(typeof environment.id).toBe("number");
-        expect(typeof environment.key).toBe("string");
-        expect(typeof environment.name).toBe("string");
-        expect(typeof environment.archived).toBe("boolean");
-        expect(typeof environment.priority).toBe("number");
-        expect(typeof environment.account_id).toBe("number");
+        expect(typeof env.id).toBe("number");
+        expect(typeof env.key).toBe("string");
+        expect(typeof env.name).toBe("string");
+        expect(typeof env.archived).toBe("boolean");
+        expect(typeof env.priority).toBe("number");
+        expect(typeof env.account_id).toBe("number");
 
         // Validate key pattern matches OpenAPI spec
-        expect(environment.key).toMatch(/^[a-zA-Z0-9_-]+$/);
+        expect(env.key).toMatch(/^[a-zA-Z0-9_-]+$/);
       });
     });
 

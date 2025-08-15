@@ -138,8 +138,9 @@ describe("Report Commands Integration Tests", () => {
       // MSW auto-generates mock data and doesn't implement actual filtering
       // Just verify that archived property exists and is a boolean
       reports.forEach((report: unknown) => {
-        if (report.archived !== undefined) {
-          expect(typeof report.archived).toBe("boolean");
+        const rep = report as { archived?: boolean };
+        if (rep.archived !== undefined) {
+          expect(typeof rep.archived).toBe("boolean");
         }
       });
     });
@@ -787,25 +788,34 @@ describe("Report Commands Integration Tests", () => {
 
       // Validate each report matches the expected schema
       reports.forEach((report: unknown) => {
-        expect(report).toHaveProperty("id");
-        expect(report).toHaveProperty("key");
-        expect(report).toHaveProperty("name");
-        expect(report).toHaveProperty("archived");
-        expect(report).toHaveProperty("flag_key");
-        expect(report).toHaveProperty("flag_name");
+        const rep = report as {
+          id: number;
+          key: string;
+          name: string;
+          archived: boolean;
+          flag_key: string;
+          flag_name: string;
+          type?: string;
+        };
+        expect(rep).toHaveProperty("id");
+        expect(rep).toHaveProperty("key");
+        expect(rep).toHaveProperty("name");
+        expect(rep).toHaveProperty("archived");
+        expect(rep).toHaveProperty("flag_key");
+        expect(rep).toHaveProperty("flag_name");
 
-        expect(typeof report.id).toBe("number");
-        expect(typeof report.key).toBe("string");
-        expect(typeof report.name).toBe("string");
-        expect(typeof report.archived).toBe("boolean");
-        expect(typeof report.flag_key).toBe("string");
-        expect(typeof report.flag_name).toBe("string");
+        expect(typeof rep.id).toBe("number");
+        expect(typeof rep.key).toBe("string");
+        expect(typeof rep.name).toBe("string");
+        expect(typeof rep.archived).toBe("boolean");
+        expect(typeof rep.flag_key).toBe("string");
+        expect(typeof rep.flag_name).toBe("string");
 
         // Validate key pattern matches OpenAPI spec
-        expect(report.key).toMatch(/^[a-zA-Z0-9_-]+$/);
+        expect(rep.key).toMatch(/^[a-zA-Z0-9_-]+$/);
 
-        if (report.type) {
-          expect(["a/b", "multi_armed_bandit"].includes(report.type)).toBe(
+        if (rep.type) {
+          expect(["a/b", "multi_armed_bandit"].includes(rep.type)).toBe(
             true,
           );
         }

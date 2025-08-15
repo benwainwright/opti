@@ -508,10 +508,11 @@ describe("Flag Commands Integration Tests", () => {
 
       if (entities.length > 0) {
         entities.forEach((entity: unknown) => {
-          expect(entity).toHaveProperty("entity_type");
-          expect(entity).toHaveProperty("entity_ids");
-          expect(typeof entity.entity_type).toBe("string");
-          expect(Array.isArray(entity.entity_ids)).toBe(true);
+          const ent = entity as { entity_type: string; entity_ids: unknown[] };
+          expect(ent).toHaveProperty("entity_type");
+          expect(ent).toHaveProperty("entity_ids");
+          expect(typeof ent.entity_type).toBe("string");
+          expect(Array.isArray(ent.entity_ids)).toBe(true);
         });
       }
     });
