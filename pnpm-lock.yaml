@@ -42,6 +42,9 @@ importers:
       '@mswjs/source':
         specifier: ^0.4.1
         version: 0.4.1(msw@2.10.5(@types/node@24.2.0)(typescript@5.9.2))
+      dotenv:
+        specifier: ^17.2.1
+        version: 17.2.1
       msw:
         specifier: ^2.10.5
         version: 2.10.5(@types/node@24.2.0)(typescript@5.9.2)
@@ -617,6 +620,10 @@ packages:
   diff@4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
+
+  dotenv@17.2.1:
+    resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
+    engines: {node: '>=12'}
 
   drange@1.1.1:
     resolution: {integrity: sha512-pYxfDYpued//QpnLIm4Avk7rsNtAtQkUES2cwAYSvD/wd2pKD71gN2Ebj3e7klzXwjocvE8c5vx/1fxwpqmSxA==}
@@ -1671,6 +1678,8 @@ snapshots:
   deep-eql@5.0.2: {}
 
   diff@4.0.2: {}
+
+  dotenv@17.2.1: {}
 
   drange@1.1.1: {}
 

@@ -5,9 +5,16 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "types": "tsc --noEmit",
     "start": "vite-node src/run.ts",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "test:unit": "vitest run --project unit",
+    "test:unit:watch": "vitest --watch --project unit",
+    "test:integration": "vitest run --project integration", 
+    "test:integration:watch": "vitest --watch --project integration",
+    "test:e2e": "vitest run --project e2e",
+    "test:e2e:watch": "vitest --watch --project e2e"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +34,7 @@
   },
   "devDependencies": {
     "@mswjs/source": "^0.4.1",
+    "dotenv": "^17.2.1",
     "msw": "^2.10.5",
     "ts-node": "^10.9.2",
     "vite-tsconfig-paths": "^5.1.4",

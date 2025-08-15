@@ -1,8 +1,9 @@
 import type {
   OptimizelyFlag,
-  OptimizelyFlagsResponse,
   OptimizelyFlagRuleset,
-  OptimizelyRule,
+  OptimizelyEnvironment,
+  OptimizelyReport,
+  OptimizelyChangeHistory,
 } from "./optimizely-types/index.ts";
 
 export interface Paths {
@@ -26,7 +27,7 @@ export interface Paths {
       query?: string;
       key_list?: string[];
     };
-    returnValue: OptimizelyFlagsResponse;
+    returnValue: OptimizelyFlag[];
   };
   "projects/:project_id:/flags/:flag_key:": {
     version: "flags/v1";
@@ -34,7 +35,13 @@ export interface Paths {
     params: { project_id: number; flag_key: string };
     returnValue: OptimizelyFlag;
   };
-  "projects/:project_id:/flags/:flag_key:/rulesets/:environment_key:": {
+  "projects/:project_id:/flags/:flag_id:/entities": {
+    version: "flags/v1";
+    method: "GET";
+    params: { project_id: number; flag_id: number };
+    returnValue: OptimizelyChangeHistory[];
+  };
+  "projects/:project_id:/flags/:flag_key:/environments/:environment_key:/ruleset": {
     version: "flags/v1";
     method: "GET";
     params: {
@@ -44,27 +51,48 @@ export interface Paths {
     };
     returnValue: OptimizelyFlagRuleset;
   };
-  "projects/:project_id:/flags/:flag_key:/rulesets/:environment_key:/rules": {
+  "projects/:project_id:/environments": {
     version: "flags/v1";
     method: "GET";
     params: {
       project_id: number;
-      flag_key: string;
-      environment_key: string;
-      page_number?: number;
       per_page?: number;
+      page_token?: string;
+      page_window?: number;
+      archived?: boolean;
+      sort?: string[];
     };
-    returnValue: { items: OptimizelyRule[] };
+    returnValue: OptimizelyEnvironment[];
   };
-  "projects/:project_id:/flags/:flag_key:/changes": {
+  "projects/:project_id:/environments/:environment_key:/reports": {
     version: "flags/v1";
     method: "GET";
     params: {
       project_id: number;
-      flag_key: string;
-      page_number?: number;
+      environment_key: string;
       per_page?: number;
+      page_token?: string;
+      page_window?: number;
+      archived?: boolean;
+      filter?: string;
+      sort?: string[];
+      query?: string;
+      flag_key?: string;
+      type?: string;
+      rule_state?: string;
+      start_date?: string;
+      end_date?: string;
     };
-    returnValue: { items: unknown[] };
+    returnValue: OptimizelyReport[];
+  };
+  "projects/:project_id:/environments/:environment_key:/reports/:report_key:": {
+    version: "flags/v1";
+    method: "GET";
+    params: {
+      project_id: number;
+      environment_key: string;
+      report_key: string;
+    };
+    returnValue: OptimizelyReport;
   };
 }

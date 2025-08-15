@@ -3,7 +3,6 @@ import { Renderer } from "./renderer.ts";
 
 export class TableRenderer extends Renderer {
   override async doRender<T extends object>(thing: T): Promise<void> {
-    console.log({ theThing: thing })
     if (Array.isArray(thing)) {
       if (thing.length === 0) {
         console.log("Returned empty collection");

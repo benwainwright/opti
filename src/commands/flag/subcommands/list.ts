@@ -33,8 +33,6 @@ export const listFlags = command({
       "archived",
     ]);
 
-    console.log({ thing: response })
-
-    await renderer.render(response.items ?? [], config.fields);
+    await renderer.render(response, config.fields);
   },
 });

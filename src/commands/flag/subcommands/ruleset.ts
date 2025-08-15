@@ -14,7 +14,7 @@ export const getRuleset = command({
   handler: async (config) => {
     const client = new OptimizelyClient(config.token);
     const ruleset = await client.request({
-      path: "projects/:project_id:/flags/:flag_key:/rulesets/:environment_key:",
+      path: "projects/:project_id:/flags/:flag_key:/environments/:environment_key:/ruleset",
       method: "GET",
       params: {
         project_id: config.project_id,
@@ -27,6 +27,7 @@ export const getRuleset = command({
       "flag_key",
       "project_id",
       "last_modified",
+      "rules",
     ]);
     await renderer.render(ruleset, config.fields);
   },

@@ -1,8 +1,8 @@
-import { OptimizelyEnvironmentStatus } from "./optimizely-environment-status";
-import { OptimizelyExperimentChange } from "./optimizely-experiment-change";
-import { OptimizelyMetric } from "./optimizely-metrics";
-import { OptimizelySchedule } from "./optimizely-schedule";
-import { OptimizelyUrlTargeting } from "./optimizely-url-targeting";
+import { OptimizelyEnvironmentStatus } from "./optimizely-environment-status.ts";
+import { OptimizelyExperimentChange } from "./optimizely-experiment-change.ts";
+import { OptimizelyMetric } from "./optimizely-metrics.ts";
+import { OptimizelySchedule } from "./optimizely-schedule.ts";
+import { OptimizelyUrlTargeting } from "./optimizely-url-targeting.ts";
 
 export interface OptimizelyExperiment {
   allocation_policy: string;

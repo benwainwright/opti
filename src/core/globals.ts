@@ -1,5 +1,5 @@
 import { string } from "@drizzle-team/brocli";
-import { rendererNames } from "./renderer-names";
+import { rendererNames } from "./renderer-names.ts";
 
 export const globals = {
   token: string("token").desc("Optimizely API token").required(),

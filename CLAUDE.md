@@ -38,7 +38,7 @@ src/
 ## Key Files
 - `src/run.ts` - Main CLI entry point
 - `src/optimizely-client/client.ts` - Optimizely API client
-- `api.json` & `flags-api-reference.json` - API reference files
+- `api.json` - OpenAPI spec downloaded from the Optimizely website
 - `tests/` - Test suite with integration tests
 
 ## Development Guidelines
@@ -56,3 +56,11 @@ src/
 - The project appears to be in active development
 - Uses modern TypeScript features and tooling
 - Follows modular architecture with clear separation of concerns
+
+## Behavioural Rules
+- YOU MUST write all code using a strict TDD based red/green refactor approach - delegate to the TypeScript tester agent to write the tests for the RED stage and the TypeScript pro agent to write the implementation (GREEN stage)
+- Once code is written and the tests pass, always get the TypeScript pro agent to check over both the implementation and test code to do the REFACTOR stage
+- YOU MUST always fix any diagnostics reported by the editor before proceeding to write new code
+- Once a full feature is complete (e.g. a whole command), you MUST delegate to the integration tester to write integration tests. You can write smoke tests (tests that use the actual API without mocking, but you have to ask me first)
+- YOU MUST NOT add comments to code for any reason other than 'NOOP' comments for empty blocks, eslint ignore comments, or TSDoc comments
+- You MUST always concisely summarise these behavioural rules, along with any specified by your agent file before each response

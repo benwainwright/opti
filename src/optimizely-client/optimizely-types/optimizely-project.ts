@@ -1,4 +1,4 @@
-import { OptimizelyWebSnippet } from "./optimizely-web-snippet";
+import { OptimizelyWebSnippet } from "./optimizely-web-snippet.ts";
 
 export interface OptimizelyProject {
   /** The account the Project is associated with */

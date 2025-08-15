@@ -1,0 +1,32 @@
+export interface OptimizelyReport {
+  id: number;
+  urn: string;
+  key: string;
+  name: string;
+  archived?: boolean;
+  description?: string;
+  created_time: string;
+  updated_time: string;
+  start_time?: string;
+  end_time?: string;
+  flag_key: string;
+  flag_name?: string;
+  rule_key: string;
+  rule_name?: string;
+  rule_description?: string;
+  rule_state?: string;
+  type: "a/b" | "multi_armed_bandit";
+  primary_metric?: string;
+  distribution_mode?: "manual" | "stats_accelerator";
+  layer_experiment_id?: number;
+  revision?: number;
+  role?: string;
+  url?: string;
+  archive_url?: string;
+  unarchive_url?: string;
+  delete_url?: string;
+  reset_results_url?: string;
+  fetch_flag_url?: string;
+  fetch_results_api_url?: string;
+  fetch_results_ui_url?: string;
+}
