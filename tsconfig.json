@@ -5,7 +5,7 @@
     "outDir": "dist",
     "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
-  "resolveJsonModule": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "module": "nodenext",
     "forceConsistentCasingInFileNames": true,
@@ -29,7 +29,13 @@
       "@optimizely-client": ["./src/optimizely-client/index.ts"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/optimizely-client", "tests/**/*.ts", "vitest.setup.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/optimizely-client",
+    "tests/**/*.ts",
+    "vitest.setup.ts"
+  ],
   "exclude": [
     "dist/**",
     "vite.config.ts",

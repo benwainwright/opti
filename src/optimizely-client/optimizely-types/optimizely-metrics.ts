@@ -8,7 +8,7 @@ export interface OptimizelyMetric {
   winning_direction?: "increasing" | "decreasing";
 
   metrics?: OptimizelyRatioMetric[];
-  event_properties?: Record<string, any>;
+  event_properties?: Record<string, unknown>;
 }
 
 export interface OptimizelyRatioMetric {

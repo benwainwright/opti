@@ -2,14 +2,14 @@ import { describe, it, expect, vi } from "vitest";
 import { OptimizelyClient } from "./client";
 
 // Mock global fetch
-const globalAny: any = global;
+const globalAny = global as typeof global & { fetch?: unknown };
 
 describe("OptimizelyClient flags API", () => {
   it("builds correct URL for listing flags", async () => {
     const collected: string[] = [];
     globalAny.fetch = vi.fn(async (url: string) => {
       collected.push(url);
-      return { ok: true, json: async () => ({ items: [] }) } as any;
+      return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
@@ -20,7 +20,7 @@ describe("OptimizelyClient flags API", () => {
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags?per_page=50"
+      "https://api.optimizely.com/flags/v1/projects/123/flags?per_page=50",
     );
   });
 
@@ -31,7 +31,7 @@ describe("OptimizelyClient flags API", () => {
       return {
         ok: true,
         json: async () => ({ id: 1, key: "flag", project_id: 123 }),
-      } as any;
+      } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
@@ -42,7 +42,7 @@ describe("OptimizelyClient flags API", () => {
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag"
+      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag",
     );
   });
 
@@ -58,7 +58,7 @@ describe("OptimizelyClient flags API", () => {
           project_id: 123,
           rules: [],
         }),
-      } as any;
+      } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
@@ -69,7 +69,7 @@ describe("OptimizelyClient flags API", () => {
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod"
+      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod",
     );
   });
 
@@ -77,7 +77,7 @@ describe("OptimizelyClient flags API", () => {
     const collected: string[] = [];
     globalAny.fetch = vi.fn(async (url: string) => {
       collected.push(url);
-      return { ok: true, json: async () => ({ items: [] }) } as any;
+      return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
@@ -93,7 +93,7 @@ describe("OptimizelyClient flags API", () => {
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod/rules?per_page=10"
+      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/rulesets/prod/rules?per_page=10",
     );
   });
 
@@ -101,7 +101,7 @@ describe("OptimizelyClient flags API", () => {
     const collected: string[] = [];
     globalAny.fetch = vi.fn(async (url: string) => {
       collected.push(url);
-      return { ok: true, json: async () => ({ items: [] }) } as any;
+      return { ok: true, json: async () => ({ items: [] }) } as Response;
     });
 
     const client = new OptimizelyClient("TOKEN");
@@ -112,7 +112,7 @@ describe("OptimizelyClient flags API", () => {
     });
 
     expect(collected[0]).toBe(
-      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/changes"
+      "https://api.optimizely.com/flags/v1/projects/123/flags/my_flag/changes",
     );
   });
 });

@@ -13,7 +13,7 @@ export interface OptimizelyVariation {
   feature_enabled?: boolean;
   status?: "active" | "paused" | "archived";
   weight: number; // 0–10000
-  variable_values?: Record<string, any>;
+  variable_values?: Record<string, unknown>;
   whitelist?: WhitelistEntry[];
   actions?: {
     changes: OptimizelyChange[];

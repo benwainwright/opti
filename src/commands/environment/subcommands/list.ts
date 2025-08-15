@@ -32,7 +32,7 @@ export const listEnvironments = command({
 
     const renderer = createRenderer(config.renderer, [
       "key",
-      "id", 
+      "id",
       "name",
       "archived",
       "priority",

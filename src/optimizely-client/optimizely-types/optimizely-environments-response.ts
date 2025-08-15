@@ -1,3 +1,3 @@
 import type { OptimizelyEnvironment } from "./optimizely-environment.ts";
 
-export interface OptimizelyEnvironmentsResponse extends Array<OptimizelyEnvironment> {}
+export type OptimizelyEnvironmentsResponse = OptimizelyEnvironment[];

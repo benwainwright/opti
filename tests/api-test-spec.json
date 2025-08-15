@@ -6,11 +6,33 @@
       "get": {
         "operationId": "listFlags",
         "parameters": [
-          { "name": "project_id", "in": "path", "required": true, "schema": {"type": "integer"} },
-          { "name": "per_page", "in": "query", "required": false, "schema": {"type": "integer"} }
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer" }
+          }
         ],
         "responses": {
-          "200": {"description": "OK", "content": {"application/json": {"schema": {"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}}}}}}
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "array", "items": { "type": "object" } }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -18,42 +40,120 @@
       "get": {
         "operationId": "getFlag",
         "parameters": [
-          { "name": "project_id", "in": "path", "required": true, "schema": {"type": "integer"} },
-          { "name": "flag_key", "in": "path", "required": true, "schema": {"type": "string"} }
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "flag_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
-        "responses": { "200": {"description": "OK", "content": {"application/json": {"schema": {"type": "object"}}}} }
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
       }
     },
     "/flags/v1/projects/{project_id}/flags/{flag_key}/rulesets/{environment_key}": {
       "get": {
         "operationId": "getRuleset",
         "parameters": [
-          { "name": "project_id", "in": "path", "required": true, "schema": {"type": "integer"} },
-          { "name": "flag_key", "in": "path", "required": true, "schema": {"type": "string"} },
-          { "name": "environment_key", "in": "path", "required": true, "schema": {"type": "string"} }
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "flag_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "environment_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
-        "responses": { "200": {"description": "OK", "content": {"application/json": {"schema": {"type": "object"}}}} }
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
       }
     },
     "/flags/v1/projects/{project_id}/flags/{flag_key}/rulesets/{environment_key}/rules": {
       "get": {
         "operationId": "listRules",
         "parameters": [
-          { "name": "project_id", "in": "path", "required": true, "schema": {"type": "integer"} },
-          { "name": "flag_key", "in": "path", "required": true, "schema": {"type": "string"} },
-          { "name": "environment_key", "in": "path", "required": true, "schema": {"type": "string"} }
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "flag_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "environment_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
-        "responses": { "200": {"description": "OK", "content": {"application/json": {"schema": {"type": "object"}}}} }
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
       }
     },
     "/flags/v1/projects/{project_id}/flags/{flag_key}/changes": {
       "get": {
         "operationId": "listChanges",
         "parameters": [
-          { "name": "project_id", "in": "path", "required": true, "schema": {"type": "integer"} },
-          { "name": "flag_key", "in": "path", "required": true, "schema": {"type": "string"} }
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "flag_key",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
         ],
-        "responses": { "200": {"description": "OK", "content": {"application/json": {"schema": {"type": "object"}}}} }
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
       }
     }
   }

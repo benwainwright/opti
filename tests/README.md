@@ -39,9 +39,9 @@ pnpm test tests/integration/flag-commands.test.ts
 
 ### What Integration Tests Cover
 
-- **Flag Commands**: 
+- **Flag Commands**:
   - ✅ `flag list` - Full testing with MSW mocking
-  - ✅ `flag get` - Full testing with MSW mocking  
+  - ✅ `flag get` - Full testing with MSW mocking
   - ✅ `flag ruleset` - Full testing with MSW mocking
   - ⚠️ `flag rules` - Endpoint not in OpenAPI spec, tests error handling
   - ⚠️ `flag changes` - Endpoint not in OpenAPI spec, tests error handling
@@ -73,23 +73,28 @@ E2E tests run against the real Optimizely API and validate the complete user jou
 ### Setting Up E2E Tests
 
 #### Option 1: Environment Variable
+
 ```bash
 export OPTIMIZELY_API_TOKEN="your_api_token_here"
 pnpm test tests/e2e/smoke.test.ts
 ```
 
 #### Option 2: .env File (Recommended)
+
 Create a `.env` file in the project root:
+
 ```
 OPTIMIZELY_API_TOKEN=your_api_token_here
 ```
 
 Then run:
+
 ```bash
 pnpm test tests/e2e/smoke.test.ts
 ```
 
 #### Option 3: One-time Run
+
 ```bash
 OPTIMIZELY_API_TOKEN=your_token pnpm test tests/e2e/smoke.test.ts
 ```
@@ -124,16 +129,19 @@ OPTIMIZELY_API_TOKEN=your_token pnpm test tests/e2e/smoke.test.ts
 Provides the `runCli()` function for testing CLI commands:
 
 ```typescript
-import { runCli } from './helpers.ts';
+import { runCli } from "./helpers.ts";
 
 const result = await runCli([
-  'flag', 'list', 
-  '--project_id', '12345', 
-  '--token', 'test-token'
+  "flag",
+  "list",
+  "--project_id",
+  "12345",
+  "--token",
+  "test-token",
 ]);
 
 // result.stdout: Array of stdout lines
-// result.stderr: Array of stderr lines  
+// result.stderr: Array of stderr lines
 // result.exitCode: Process exit code
 ```
 
@@ -145,7 +153,7 @@ Uses `@mswjs/source` to generate mock handlers from the OpenAPI specification:
 
 ```typescript
 import { fromOpenApi } from "@mswjs/source/open-api";
-import testSpec from "../../api.json" with { type: 'json' }
+import testSpec from "../../api.json" with { type: "json" };
 
 export const handlers = await fromOpenApi(testSpec);
 ```
@@ -180,6 +188,7 @@ pnpm test --reporter=verbose
 ## Test Configuration
 
 Tests are configured in:
+
 - `vitest.config.ts`: Vitest configuration
 - `vitest.setup.ts`: Global test setup (MSW server)
 - `package.json`: Test scripts
@@ -187,17 +196,20 @@ Tests are configured in:
 ## CI/CD Considerations
 
 ### For Integration Tests
+
 - ✅ Run in CI - no external dependencies
 - ✅ Fast execution
 - ✅ Deterministic results
 
 ### For E2E Tests
+
 - ⚠️ Requires API token in CI environment
-- ⚠️ Requires test data in Optimizely account  
+- ⚠️ Requires test data in Optimizely account
 - ⚠️ Network dependency
 - ⚠️ Slower execution
 
 Consider running E2E tests:
+
 - As a separate CI step
 - Only on main branch or releases
 - With dedicated test account and data

@@ -22,7 +22,7 @@ export const getReport = command({
         report_key: config.report_key,
       },
     });
-    
+
     const renderer = createRenderer(config.renderer, [
       "id",
       "key",
@@ -36,7 +36,7 @@ export const getReport = command({
       "start_time",
       "end_time",
     ]);
-    
+
     await renderer.render(report, config.fields);
   },
 });

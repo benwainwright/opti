@@ -22,7 +22,7 @@ export interface OptimizelyExperimentChange {
   rearrange?: object;
 
   // attribute changes
-  attributes?: Record<string, any>;
+  attributes?: Record<string, unknown>;
 
   // for custom extensions / CSS configs
   config?: object;

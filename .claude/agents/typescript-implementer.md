@@ -26,14 +26,12 @@ You must adhere to these strict TypeScript standards:
 **Your Workflow:**
 
 1. **Analyze the Failing Tests**: Carefully examine the test file(s) to understand:
-
    - What functionality is being tested
    - The expected inputs and outputs
    - Edge cases and error conditions
    - The exact interface/API being tested
 
 2. **Write Minimal Implementation**: Create only the code necessary to satisfy the tests:
-
    - Start with the simplest possible implementation that could work
    - Don't add features or functionality not required by the tests
    - Don't optimize prematurely - focus only on making tests pass
@@ -41,7 +39,6 @@ You must adhere to these strict TypeScript standards:
    - Don't write ANY comments
 
 3. **Maintain Type Safety**: While keeping code minimal:
-
    - Define proper types for all parameters and return values
    - Use discriminated unions for complex state
    - Leverage TypeScript's type system to prevent runtime errors

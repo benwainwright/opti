@@ -16,7 +16,8 @@
       "Bash(pnpm run start:*)",
       "Bash(sed:*)",
       "Bash(npx nx run:*)",
-      "Bash(pnpm exec tsc:*)"
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm run:*)"
     ],
     "deny": [],
     "ask": []
