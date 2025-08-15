@@ -1,10 +1,14 @@
 {
-  "name": "optimizely-cli",
+  "name": "opti",
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/run.js",
+  "bin": {
+    "opti": "./bin/run.js"
+  },
   "scripts": {
+    "build": "swc src -d dist --strip-leading-paths",
     "types": "tsc --noEmit",
     "format": "prettier --write .",
     "lint": "eslint .",
@@ -23,26 +27,27 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
-    "@drizzle-team/brocli": "^0.11.0",
-    "prettier": "^3.6.2",
-    "table": "^6.9.0",
-    "uuid": "^11.1.0"
+    "@drizzle-team/brocli": "0.11.0",
+    "table": "6.9.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@mswjs/source": "^0.4.1",
-    "dotenv": "^17.2.1",
-    "eslint": "^9.33.0",
-    "execa": "^9.6.0",
-    "msw": "^2.10.5",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.20.4",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.1",
-    "vite-node": "^3.2.4",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4",
+    "@eslint/js": "9.33.0",
+    "prettier": "3.6.2",
+    "@mswjs/source": "0.4.1",
+    "@swc/cli": "0.7.8",
+    "@swc/core": "1.13.3",
+    "dotenv": "17.2.1",
+    "eslint": "9.33.0",
+    "execa": "9.6.0",
+    "msw": "2.10.5",
+    "ts-node": "10.9.2",
+    "tsx": "4.20.4",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.39.1",
+    "vite": "7.1.1",
+    "vite-node": "3.2.4",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.2.4",
     "vitest-tsconfig-paths": "3.4.1"
   }
 }
